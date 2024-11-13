@@ -29,8 +29,8 @@ jobs:
         uses: meeDamian/github-release@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{steps.version.outputs.prop}}
-          name: ${{steps.version.outputs.prop}}
+          tag: v${{steps.version.outputs.prop}}
+          name: v${{steps.version.outputs.prop}}
           body: Please check [changelog](https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/CHANGELOG.md) for changes
           files: plat_seapp_patcher-${{steps.version.outputs.prop}}.zip plat_seapp_patcher.zip
           gzip: false
