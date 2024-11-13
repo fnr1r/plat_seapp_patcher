@@ -5,7 +5,7 @@ mkdir_if_not_exist() {
     if ! [ -d "$1" ]; then
         mkdir -pv "$1"
     elif [ -f "$1/placeholder" ]; then
-        rm -v "$1"
+        rm -v "$1/placeholder"
     fi
 }
 

@@ -5,7 +5,7 @@ TEST_TEMP_PATH := /data/local/tmp/$(MODULE_ZIP)
 .PHONY: all
 all: $(MODULE_ZIP)
 
-$(MODULE_ZIP):
+$(MODULE_ZIP): $(shell find module/ -type f)
 	cd module && zip -r ../$@ *
 
 .PHONY: clean
