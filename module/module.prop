@@ -1,0 +1,7 @@
+id=plat_seapp_patcher
+name=plat_seapp_contexts patcher
+version=1.0
+versionCode=1
+author=fnrir
+description=Unified patcher for plat_seapp_contexts
+updateJson=https://raw.githubusercontent.com/fnr1r/plat_seapp_patcher/master/update.json

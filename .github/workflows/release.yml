@@ -1,0 +1,41 @@
+name: CI Build
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*.*"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Get version
+        id: version
+        uses: notiz-dev/github-action-json-property@master
+        with: 
+            path: 'update.json'
+            prop_path: 'version'
+      - name: Archive
+        run:  |
+          make all
+          ln plat_seapp_patcher-${{steps.version.outputs.prop}}.zip plat_seapp_patcher.zip
+      - name: Release
+        uses: meeDamian/github-release@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{steps.version.outputs.prop}}
+          name: ${{steps.version.outputs.prop}}
+          body: Please check [changelog](https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/CHANGELOG.md) for changes
+          files: plat_seapp_patcher-${{steps.version.outputs.prop}}.zip plat_seapp_patcher.zip
+          gzip: false
+          draft: false
+          prerelease: false
+          allow_override: true
+      - name: Cleanup
+        run:  |
+          rm plat_seapp_patcher.zip
+          make clean
