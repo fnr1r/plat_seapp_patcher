@@ -2,6 +2,10 @@
 
 Unified patcher for plat_seapp_contexts
 
+## NOTE
+
+This project is not actively maintained.
+
 ## Acks
 
 Template from
